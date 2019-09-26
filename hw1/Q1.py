@@ -6,6 +6,7 @@ WAP_num = []
 for index in range(521) :
     WAP_num.append(0)
 
+# count the number of detected WAPs on each row
 with open('TrainingData_new.csv',newline='') as csvfile:
     rows = csv.reader(csvfile)
     next(rows,None)
@@ -21,4 +22,3 @@ plt.title("Q1")
 plt.xlabel("Numbers of detected WAP on a single capture")
 plt.ylabel("Count")
 plt.show()
-    
