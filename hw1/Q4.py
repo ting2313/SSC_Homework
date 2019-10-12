@@ -22,9 +22,21 @@ with open('TrainingData_new.csv',newline='') as csvfile:
 sum = b0+b1+b2
 pdf = [b0/sum,b1/sum,b2/sum]
 cdf = [b0/sum,(b0+b1)/sum,1]
-plt.plot(x,pdf,'b^',x,cdf,'g-')
-plt.legend(['pdf','cdf'])
-plt.title("Q4")
+# plt.plot(x,pdf,'b^',x,cdf,'g-')
+# plt.legend(['pdf','cdf'])
+# plt.title("Q4")
+# plt.xlabel("ID of building")
+# plt.ylabel("Number of RSSI Value")
+# plt.show()
+
+plt.bar(x,pdf,width=0.8)
+plt.title("Q4:PDF")
+plt.xlabel("ID of building")
+plt.ylabel("Number of RSSI Value")
+plt.show()
+
+plt.bar(x,cdf,width=0.8)
+plt.title("Q4:CDF")
 plt.xlabel("ID of building")
 plt.ylabel("Number of RSSI Value")
 plt.show()
