@@ -1,32 +1,27 @@
 import random
 import numpy as np
 
+# This function will generate one time of simulation
+# and return the total number of "hits"
 def hits_simulation():
-    # initialize
+    # generate the shuffled cards
     cards = []
     for i in range(1,101):
         cards.append(i)
     random.shuffle(cards)
 
-    hits = []
+    # determine whether it's "hit" or not
+    sum = 0
     for i in range(1,101):
         if cards[i-1]==i:
-            hits.append(1)
-        else:
-            hits.append(0)
-    return hits
+            sum += 1
+    return sum
 
+# Do "number" times of experience and return the mean and variance
 def hits_exp(number):
     sample = []
     for i in range(number):
-        sample.append(np.mean(hits_simulation()))
-    return np.mean(sample)
+        sample.append(hits_simulation())
+    return [np.mean(sample),np.var(sample)]
 
-def hits_var(number):
-    sample = []
-    for i in range(number):
-        sample.append(np.var(hits_simulation()))
-    return np.mean(sample)
-
-print(hits_exp(10000))
-print(hits_var(10000))    
+print(hits_exp(200000))
