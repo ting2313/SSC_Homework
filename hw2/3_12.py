@@ -13,7 +13,7 @@ def N_expect_estinate(n):
     sample = []
     for x in range(n):
         sample.append(N_generate())
-    print("E[%d]:%f"%(n,np.mean(sample)))
+    print("E[%d]:%f(var=%f)"%(n,np.mean(sample),np.var(sample)))
 
 # Q1
 N_expect_estinate(100)
