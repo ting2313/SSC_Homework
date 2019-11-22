@@ -1,7 +1,8 @@
-#######
+#######################################
 # Reference:
 #   stackoverflow:49947814
-#######
+#######################################
+
 import customer
 import server
 import numpy as np
@@ -24,6 +25,8 @@ for clientTime in clientCreateTime :
     server.queue.push(newCustomer)
     print("Add Customer")
 
+serverThread.join()
 print("End Simulation")
-print(server.queue.totalCustomer)
 
+print("Average Waiting Time:")
+print(server.queue.totalWaitingTime/SERVING_NUM)
