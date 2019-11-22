@@ -16,7 +16,7 @@ class WaitingQueue:
             del self.list[0]
             return firstCustomer
         except LookupError :
-            print("There is no element to pop!")
+            print("ERROR!There is no element to pop!")
     def getListLen(self):
         return len(self.list)
 
