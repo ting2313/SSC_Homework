@@ -26,7 +26,5 @@ class WaitingQueue:
             print("ERROR!There is no element to pop!")
     def getListLen(self):
         return len(self.list)
-    def printState(self):
-        print("State %d at time %f", )
 
     

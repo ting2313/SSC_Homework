@@ -2,16 +2,17 @@
 # Reference:
 #   stackoverflow:49947814
 #######################################
-
 import customer
 import server
 import theorical
 import numpy as np
 import time
 import threading
+import matplotlib.pyplot as plt
 AVERAGE_ARRIVE_TIME = 0.125
 SERVING_NUM = 1000
 startTime = time.time()
+timeEachPerson = {}
 
 # Creating an object of server and start at another threading
 server = server.Server(startTime)
@@ -27,6 +28,10 @@ lastTime = time.time()
 for clientTime in clientCreateTime :
     while (time.time()-lastTime)<clientTime:
         continue
+    if server.queue.getListLen() in timeEachPerson:
+        timeEachPerson[server.queue.getListLen()]+=clientTime
+    else :
+        timeEachPerson[server.queue.getListLen()] = clientTime
     newCustomer = customer.Customer()
     server.queue.push(newCustomer)
     lastTime = time.time()
@@ -43,3 +48,12 @@ calculator.print()
 print("[Experiment Value]")
 print("Average Waiting Time:%f"%(server.queue.totalWaitingTime/SERVING_NUM))
 print("Usage:%f"%(server.servingTime/totalServerTime))
+print("Each Time per Person:")
+totalTime = sum(timeEachPerson.values())
+timeDensity = list(timeEachPerson.values())
+for i in range(0,len(timeDensity)):
+    timeDensity[i] /= totalTime
+
+ax = plt.bar(list(timeEachPerson.keys()),timeDensity,width=0.8)
+plt.title("Percentage in simulation")
+plt.show()
