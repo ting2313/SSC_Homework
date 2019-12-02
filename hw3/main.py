@@ -28,10 +28,10 @@ lastTime = time.time()
 for clientTime in clientCreateTime :
     while (time.time()-lastTime)<clientTime:
         continue
-    if server.queue.getListLen() in timeEachPerson:
-        timeEachPerson[server.queue.getListLen()]+=clientTime
+    if server.queue.getListLen()+server.busy in timeEachPerson:
+        timeEachPerson[server.queue.getListLen()+server.busy]+=clientTime
     else :
-        timeEachPerson[server.queue.getListLen()] = clientTime
+        timeEachPerson[server.queue.getListLen()+server.busy] = clientTime
     newCustomer = customer.Customer()
     server.queue.push(newCustomer)
     lastTime = time.time()
